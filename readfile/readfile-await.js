@@ -11,7 +11,7 @@ const fs = require('fs');
 //   }
 // });
 
-let fsPromise = new Promise((resolve, reject) => {
+let work = new Promise((resolve, reject) => {
   // fs.readFile('test1111.txt', 'utf-8', (err, data) => {
   // error
   fs.readFile('test.txt', 'utf-8', (err, data) => {
@@ -29,10 +29,21 @@ let fsPromise = new Promise((resolve, reject) => {
   });
 });
 
-fsPromise
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+// fsPromise
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+async function doWork() {
+    try {
+      const result = await work;
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
+  doWork();
