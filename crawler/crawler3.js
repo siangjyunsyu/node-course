@@ -7,7 +7,9 @@ const fs = require('fs/promises');
 
 (async () => {
     try{
-        let stockNo = await fs.readFile('stock.txt', 'utf-8');
+        // 讀取stock檔案,取得股票號碼
+        let stockNo = await fs.readFile('stock.txt', 'utf-8'); 
+        // NodeJS 內建API-readFile
         let response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY',{
             params: {
                 response: 'json',
