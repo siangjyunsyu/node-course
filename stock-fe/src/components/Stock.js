@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { API_URL } from '../utils/config';
+
 
 // CORS policy 瀏覽器的安全性控制 ==> 跨來源資源共用
 // 只要跨來源,就會被瀏覽器阻擋
@@ -11,7 +13,7 @@ const Stock = () => {
 
   useEffect(() => {
     let getStocks = async () => {
-      let response = await axios.get("http://localhost:3001/stocks");
+      let response = await axios.get(API_URL + '/stocks');
       setStocks(response.data);
     };
     getStocks();
@@ -21,7 +23,7 @@ const Stock = () => {
     <div>
       <h2 className="ml-7 mt-6 text-xl text-gray-600">股票代碼</h2>
       {
-        stocks.map((stock, index) => { 
+        stocks.map((stock, index) => {
           // 這裡的index拿來當key沒有效用，僅用來比對用
           return (
             <div key={stock.id} className="bg-white bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg m-6 cursor-pointer">
